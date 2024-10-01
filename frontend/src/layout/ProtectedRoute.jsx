@@ -1,0 +1,15 @@
+import React from "react";
+import { Navigate, Outlet } from "react-router-dom";
+
+export const ProtectedRoute = ({ user }) => {
+  if (!user) {
+    return <Navigate to="/" redirect />;
+  }
+
+  return (
+    <>
+      <div>ProtectedRoute</div>
+      <Outlet />
+    </>
+  );
+};
