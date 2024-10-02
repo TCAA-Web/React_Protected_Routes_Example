@@ -1,15 +1,22 @@
 import React, { useState } from "react";
 
 export const Signin = ({ setUser, user }) => {
+  // State til at gemme en besked til brugeren hvis noget går galt
   const [msg, setMsg] = useState("");
 
+  // Submit funktion der tager vores email of password og sender det til vores node server (backend -> index.js)
   const submitForm = (e) => {
     e.preventDefault();
-    console.log("Din value er: ", e.target.email.value);
+
+    // Gem email og password som variabler
     let email = e.target.email.value;
     let password = e.target.password.value;
 
+    // Stringify et objekt med email og password
     let body = JSON.stringify({ email: email, password: password });
+
+    // Og send en post request til serveren med body (email og password)
+    // Hvis det lykkedes, sættes user staten til resultatet der kommer tilbage fra serveren (token)
     if (email && password) {
       fetch("http://localhost:3000/signin", {
         method: "POST",
@@ -24,10 +31,12 @@ export const Signin = ({ setUser, user }) => {
     }
   };
 
+  // Sign-Out funktion der sætter user til null
   const signOut = () => {
     setUser(null);
   };
 
+  // Conditionally render vores sign in form eller sign out knap alt efter om brugeren er logget ind
   return !user ? (
     <div>
       <h1>Sign in</h1>

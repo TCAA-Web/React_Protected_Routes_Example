@@ -1,0 +1,20 @@
+.formStyle {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 80%;
+  margin: auto;
+  align-items: center;
+  justify-content: center;
+
+  div {
+    label {
+      display: block;
+      text-align: start;
+    }
+    input {
+      height: auto;
+      width: 50vw;
+    }
+  }
+}

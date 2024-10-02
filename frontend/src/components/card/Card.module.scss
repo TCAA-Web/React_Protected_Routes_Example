@@ -1,0 +1,22 @@
+.cardStyle {
+  border-radius: 8px;
+  box-shadow: 2px 3px 12px -5px rgba(55, 55, 55, 0.6);
+  padding: 8px;
+  margin: 8px;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    text-align: center;
+    padding-bottom: 4px;
+    border-bottom: solid 2px rgba(55, 55, 55, 0.2);
+  }
+  img {
+    width: 100%;
+    height: fit-content;
+    object-fit: cover;
+    object-position: 0;
+  }
+}

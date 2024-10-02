@@ -1,0 +1,11 @@
+.navbarStyle {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(240, 240, 240);
+  color: black;
+  height: 40px;
+  box-shadow: 2px 1px 3px rgba(40, 40, 40, 0.5);
+  gap: 8px;
+}

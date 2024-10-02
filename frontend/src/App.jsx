@@ -3,29 +3,44 @@ import { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { MainLayout } from "./layout/MainLayout";
 import { Signin } from "./pages/Signin";
-import { Dashboard } from "./pages/Dashboard";
 import { Home } from "./pages/Home";
 import { ProtectedRoute } from "./layout/ProtectedRoute";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { SingleBlog } from "./pages/SingleBlog";
+import { UpdateBlog } from "./pages/UpdateBlog";
+
+// Initializer en ny QueryClient
+const queryClient = new QueryClient();
 
 function App() {
+  // State til at gemme user data fra serveren
   const [user, setUser] = useState();
 
   return (
     <>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<MainLayout />}>
-            <Route index element={<Home />} />
-            <Route
-              path="/signin"
-              element={<Signin setUser={setUser} user={user} />}
-            />
-            <Route element={<ProtectedRoute user={user} />}>
-              <Route path="/dashboard" element={<Dashboard />} />
+      <QueryClientProvider client={queryClient}>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<MainLayout />}>
+              <Route index element={<Home />} />
+              <Route
+                path="/signin"
+                element={<Signin setUser={setUser} user={user} />}
+              />
+              <Route
+                path={`single/:slug`}
+                element={<SingleBlog user={user} />}
+              />
+              <Route element={<ProtectedRoute user={user} />}>
+                <Route
+                  path="/update/:slug"
+                  element={<UpdateBlog user={user} />}
+                />
+              </Route>
             </Route>
-          </Route>
-        </Routes>
-      </BrowserRouter>
+          </Routes>
+        </BrowserRouter>
+      </QueryClientProvider>
     </>
   );
 }
